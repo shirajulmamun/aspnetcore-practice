@@ -3,14 +3,16 @@ using EmployeeManagement.Models.EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmployeeManagement.Models.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    partial class EmployeeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181124140806_Department_Added")]
+    partial class Department_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,8 +41,6 @@ namespace EmployeeManagement.Models.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<int>("DepartmentId");
-
                     b.Property<string>("Email");
 
                     b.Property<string>("MobileNumber");
@@ -54,17 +54,7 @@ namespace EmployeeManagement.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentId");
-
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("EmployeeManagement.Models.EntityModels.Employee", b =>
-                {
-                    b.HasOne("EmployeeManagement.Models.EntityModels.Department", "Department")
-                        .WithMany("Employees")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
