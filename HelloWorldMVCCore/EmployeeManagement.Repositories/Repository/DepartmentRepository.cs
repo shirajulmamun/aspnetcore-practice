@@ -20,5 +20,10 @@ namespace EmployeeManagement.Repositories.Repository
         {
             return db.Departments.ToList();
         }
+
+        public Department GetById(int id)
+        {
+            return db.Departments.FirstOrDefault(c => c.Id == id);
+        }
     }
 }

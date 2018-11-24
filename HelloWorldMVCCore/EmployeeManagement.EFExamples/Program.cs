@@ -12,37 +12,26 @@ namespace EmployeeManagement.EFExamples
           
             EmployeeRepository repository = new EmployeeRepository(); 
             DepartmentRepository departmentRepository = new DepartmentRepository();
-           
-            Department department = new Department()
-            {
-                Name = "Accounting"
-            };
 
-            Console.WriteLine("Adding Department...");
-            bool isSaved = departmentRepository.Add(department);
-            if (isSaved)
+            var department = departmentRepository.GetById(1);
+
+            Console.WriteLine("Department: "+department.Name);
+            if (department.Employees != null)
             {
-                Console.WriteLine("Department Added");
+                Console.WriteLine("Employees: "+department.Employees.Count);
+
+                foreach (var employee in department.Employees)
+                {
+                     Console.WriteLine(employee.Name);
+                }
             }
-
-            var employee = new Employee()
+            else
             {
-                Name = "Mr. A",
-                Address = "Dhaka",
-                Email = "a@mail.com",
-                RegNo = "001",
-                Salary = 28923,
-                DepartmentId = department.Id
-            };
-
-            Console.WriteLine("Employee Adding...");
-            bool isAdded = repository.Add(employee);
-
-            if (isAdded)
-            {
-                Console.WriteLine("Employee is added.");
+                Console.WriteLine("No Employee Found!");
             }
+            
 
+          
             Console.ReadKey();
         }
     }

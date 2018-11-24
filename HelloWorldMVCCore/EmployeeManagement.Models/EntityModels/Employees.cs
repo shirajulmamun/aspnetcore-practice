@@ -13,7 +13,7 @@ namespace EmployeeManagement.Models.EntityModels
         public string Address { get; set; }
         public string Email { get; set; }
         public int DepartmentId { get; set; }
-        public Department Department { get; set; }
+        public virtual Department Department { get; set; }
 
     }
 }
