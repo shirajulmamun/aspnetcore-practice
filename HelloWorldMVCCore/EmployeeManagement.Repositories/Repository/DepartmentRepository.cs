@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EmployeeManagement.Models.EntityModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Repositories.Repository
 {
@@ -23,7 +24,9 @@ namespace EmployeeManagement.Repositories.Repository
 
         public Department GetById(int id)
         {
-            return db.Departments.FirstOrDefault(c => c.Id == id);
+            return db.Departments
+                .Include(c=>c.Employees)
+                .FirstOrDefault(c => c.Id == id);
         }
     }
 }
