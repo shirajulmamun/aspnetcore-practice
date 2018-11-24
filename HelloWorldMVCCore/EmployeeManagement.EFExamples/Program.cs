@@ -11,26 +11,36 @@ namespace EmployeeManagement.EFExamples
         { 
           
             EmployeeRepository repository = new EmployeeRepository(); 
+            DepartmentRepository departmentRepository = new DepartmentRepository();
            
-            var employeeSearchCriteria = new Employee()
+            Department department = new Department()
             {
-                Name="l",
-                RegNo = "1",
-              
+                Name = "Accounting"
             };
 
-            var retrieveEmployees = repository.Search(employeeSearchCriteria);
-
-            if (!retrieveEmployees.Any())
+            Console.WriteLine("Adding Department...");
+            bool isSaved = departmentRepository.Add(department);
+            if (isSaved)
             {
-               Console.WriteLine("Not Found!");
-                Console.ReadKey();
-                return;
+                Console.WriteLine("Department Added");
             }
 
+            var employee = new Employee()
+            {
+                Name = "Mr. A",
+                Address = "Dhaka",
+                Email = "a@mail.com",
+                RegNo = "001",
+                Salary = 28923,
+                DepartmentId = department.Id
+            };
 
-            foreach (var employee in retrieveEmployees)       {
-                Console.WriteLine(employee.Name);
+            Console.WriteLine("Employee Adding...");
+            bool isAdded = repository.Add(employee);
+
+            if (isAdded)
+            {
+                Console.WriteLine("Employee is added.");
             }
 
             Console.ReadKey();
