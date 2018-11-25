@@ -11,5 +11,6 @@ namespace EmployeeManagement.Models.EntityModels
         public double Salary { get; set; }
         public string MobileNumber { get; set; }
         public string Address { get; set; }
+        public virtual List<Department> Departments { get; set; }
     }
 }
