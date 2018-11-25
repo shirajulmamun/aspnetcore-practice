@@ -17,6 +17,7 @@ namespace EmployeeManagement.Models.EntityModels
 
         public virtual DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Course> Courses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,8 +25,8 @@ namespace EmployeeManagement.Models.EntityModels
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder
-                    
-                    .UseSqlServer("Server=(local);Database=EmployeeDB;Trusted_Connection=True;");
+
+                    .UseSqlServer("Server=SHAWON-PC\\SQLEXPRESS;Database=EmployeeDB;Trusted_Connection=True;");
             }
         }
 

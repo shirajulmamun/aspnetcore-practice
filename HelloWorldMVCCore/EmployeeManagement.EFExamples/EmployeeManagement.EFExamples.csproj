@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="microsoft.entityframeworkcore" Version="2.1.4" />
     <PackageReference Include="microsoft.entityframeworkcore.design" Version="2.1.4" />
   </ItemGroup>
 
