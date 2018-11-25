@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="microsoft.entityframeworkcore.design" Version="2.1.4" />
+=======
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+>>>>>>> 456931f57cc91b46dcdae828e68bc3f3ed750ed1
   </ItemGroup>
 
   <ItemGroup>
