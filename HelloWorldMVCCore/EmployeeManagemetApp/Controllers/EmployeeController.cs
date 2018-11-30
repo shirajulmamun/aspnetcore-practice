@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeManagemetApp.DatabaseContext;
+using EmployeeManagement.Models.EntityModels;
+using EmployeeManagement.Repositories.Repository;
 using EmployeeManagemetApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,11 @@ namespace EmployeeManagemetApp.Controllers
 {
     public class EmployeeController:Controller
     {
-        private EmployeeDbContext _db;
+        private EmployeeRepository _employeeRepository;
 
-        public EmployeeController(EmployeeDbContext db)
+        public EmployeeController(EmployeeRepository employeeRepository)
         {
-            this._db = db;
+            this._employeeRepository = employeeRepository;
         }
         public IActionResult Create()
         {
@@ -26,8 +27,7 @@ namespace EmployeeManagemetApp.Controllers
         [HttpPost]
         public IActionResult Create(Employee model)
         {
-            _db.Employees.Add(model);
-            bool isSaved = _db.SaveChanges() > 0;
+            bool isSaved  =  _employeeRepository.Add(model);
             if (isSaved)
             {
                 ViewBag.Message = "Saved Succesful!";

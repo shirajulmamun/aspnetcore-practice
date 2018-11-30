@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeManagemetApp.DatabaseContext;
+using EmployeeManagement.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,16 +26,7 @@ namespace EmployeeManagemetApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddDbContext<EmployeeDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("EmployeeDbContext")));
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+           AppConfiguration.ConfigureServices(services,Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

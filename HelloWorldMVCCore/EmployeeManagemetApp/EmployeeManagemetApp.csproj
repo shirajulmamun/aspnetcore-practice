@@ -5,8 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <Compile Remove="DatabaseContext\**" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="DatabaseContext\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="DatabaseContext\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="DatabaseContext\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeManagement.Configuration\EmployeeManagement.Configuration.csproj" />
+    <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
+    <ProjectReference Include="..\EmployeeManagement.Repositories\EmployeeManagement.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

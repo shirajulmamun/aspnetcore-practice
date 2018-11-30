@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmployeeManagement.DatabaseContexts\EmployeeManagement.DatabaseContexts.csproj" />
     <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
   </ItemGroup>
 
