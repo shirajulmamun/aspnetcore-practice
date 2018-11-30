@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeManagement.DatabaseContexts\EmployeeManagement.DatabaseContexts.csproj" />
+    <ProjectReference Include="..\EmployeeManagement.Repositories\EmployeeManagement.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
