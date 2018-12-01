@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace EmployeeManagement.Models.EntityModels
+namespace EmployeeManagemetApp.Models
 {
-    public class Employee
+    public class EmployeeCreateViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,9 +19,7 @@ namespace EmployeeManagement.Models.EntityModels
 
         [Display(Name = "Department")]
         public int? DepartmentId { get; set; }
-        public virtual Department Department { get; set; }
-
-       
-
+        
+        public  List<SelectListItem> Departments { get; set; }
     }
 }
