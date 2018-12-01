@@ -49,6 +49,11 @@ namespace EmployeeManagement.Repositories.Repository
 
             return result.ToList();
         }
+
+        public IEnumerable<Employee> GetAll()
+        {
+            return db.Employees.Include(c=>c.Department).ToList();
+        }
     }
 }
 

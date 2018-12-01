@@ -32,7 +32,7 @@ namespace EmployeeManagemetApp.Controllers
                     Value = c.Id.ToString(),
                     Text = c.Name
                 }).ToList();
-
+            model.Employees = _employeeRepository.GetAll();
             return View(model);
         }
 
@@ -66,6 +66,7 @@ namespace EmployeeManagemetApp.Controllers
                    Value = c.Id.ToString(),
                    Text = c.Name
                }).ToList();
+            model.Employees = _employeeRepository.GetAll();
             return View(model);
         }
     }

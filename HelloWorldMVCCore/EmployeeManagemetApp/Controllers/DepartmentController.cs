@@ -24,6 +24,7 @@ namespace EmployeeManagemetApp.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.RegNo = "ABCD";
             return View();
         }
 
