@@ -25,6 +25,7 @@ namespace EmployeeManagement.Configuration
 
             services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EmployeeDbContext")));
             services.AddTransient<EmployeeRepository>();
+            services.AddTransient<DepartmentRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

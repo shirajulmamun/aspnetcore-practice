@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+
+
+    @if (ViewBag.Message != null)
+     {
+         <div class="alert-success">
+             @ViewBag.Message
+         </div>
+     }
+
+    <div class="form-group">
+
+        @Html.Label("Name", "Name", new {@class = "control-label col-md-2"})
+        <div class="col-md-8">
+            @Html.TextBox("Name", null, new {@class = "form-control", placeholder = "Name of Department"})
+            @Html.ValidationMessage("Name")
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4 col-md-offset-4">
+            <input type="submit" value="Save" class="btn btn-success"/>
+        </div>
+    </div>
+
+}
+
+
