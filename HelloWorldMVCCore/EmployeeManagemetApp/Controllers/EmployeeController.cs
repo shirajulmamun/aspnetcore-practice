@@ -107,5 +107,77 @@ namespace EmployeeManagemetApp.Controllers
             }
             
         }
+
+        public IActionResult Edit(int employeeId)
+        {
+            var employee = _employeeRepository.GetById(employeeId);
+
+
+            var model = new EmployeeCreateViewModel()
+            {
+                Id=employee.Id,
+                Name =  employee.Name,
+                Address = employee.Address,
+                DepartmentId =  employee.DepartmentId,
+                Email = employee.Email,
+                MobileNumber = employee.MobileNumber,
+                Salary =  employee.Salary
+            };
+            model.Departments = _departmentRepository.GetAll()
+                .Select(c => new SelectListItem() {Value = c.Id.ToString(), Text = c.Name}).ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EmployeeCreateViewModel model)
+        {
+
+            var employee = new Employee()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Address = model.Address,
+                DepartmentId = model.DepartmentId,
+                Email = model.Email,
+                MobileNumber = model.MobileNumber,
+                Salary = model.Salary,
+                RegNo = model.RegNo
+            };
+
+            bool isUpdated = _employeeRepository.Update(employee);
+
+            model.Departments = _departmentRepository.GetAll()
+                .Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Name }).ToList();
+            if (isUpdated)
+            {
+                ViewBag.Message = "Updated Successful";
+                return View(model);
+            }
+
+            return View(model);
+        }
+
+        public IActionResult GetEmployeeEditPartial(int employeeId)
+        {
+            var employee = _employeeRepository.GetById(employeeId);
+
+
+            var model = new EmployeeCreateViewModel()
+            {
+                Id=employee.Id,
+                Name = employee.Name,
+                Address = employee.Address,
+                DepartmentId = employee.DepartmentId,
+                Email = employee.Email,
+                MobileNumber = employee.MobileNumber,
+                Salary = employee.Salary
+            };
+            model.Departments = _departmentRepository.GetAll()
+                .Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Name }).ToList();
+
+            return PartialView("Employee/_EmployeeEdit", model);
+        }
+
     }
 }
