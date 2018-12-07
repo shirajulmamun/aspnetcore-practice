@@ -1,0 +1,79 @@
+﻿@model DepartmentEmployeeViewModel
+
+@{
+    ViewData["Title"] = "DepartmentEmployee";
+}
+
+<h2>DepartmentEmployee</h2>
+
+<div class="form-horizontal">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">Department</label>
+            <select name="DepartmentId" id="DepartmentId" asp-items="Model.Departments" class="form-control">
+                <option value="">--SELECT--</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Employees</label>
+            <select name="EmployeeId" id="EmployeeId" class="form-control">
+                <option value="">--SELECT--</option>
+            </select>
+        </div>
+    </div>
+    <div id="loadBox" class="col-md-6">
+        
+    </div>
+</div>
+
+@section Scripts{ 
+    <script>
+        $("#DepartmentId").change(function() {
+            var departmentId = $("#DepartmentId").val();
+            var json = { departmentId: departmentId };
+
+            $.ajax({
+                type: "POST",
+                url: "/Employee/GetEmployeeBy",
+                data: json,
+                success: function(response) {
+                    var employees = response;
+                    $('#EmployeeId').empty();
+                    var emptyOption = "<option value=''>--SELECT--</option>"
+                    $('#EmployeeId').append(emptyOption);
+
+                    $.each(employees,
+                        function(key, employee) {
+                            var option = "<option value='" + employee.id + "'>" + employee.name + "</option>";
+
+                            $('#EmployeeId').append(option);
+                        });
+
+
+                },
+                error: function(response) {
+                    alert(response.message);
+                }
+
+            });
+
+        });
+
+        $('#EmployeeId').change(function() {
+            var employeeId = $('#EmployeeId').val();
+            var jsonData = { employeeId: employeeId };
+
+            $.ajax({
+                type: "POST",
+                url: "/Employee/GetEmployee",
+                data: jsonData,
+                success: function(response) {
+                    $('#loadBox').html(response);
+                }
+
+            });
+
+
+        });
+    </script>
+}

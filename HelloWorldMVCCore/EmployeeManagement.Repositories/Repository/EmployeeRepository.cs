@@ -54,6 +54,11 @@ namespace EmployeeManagement.Repositories.Repository
         {
             return db.Employees.Include(c=>c.Department).ToList();
         }
+
+        public List<Employee> GetByDepartmentId(int departmentId)
+        {
+            return db.Employees.Where(c => c.DepartmentId == departmentId).ToList();
+        }
     }
 }
 

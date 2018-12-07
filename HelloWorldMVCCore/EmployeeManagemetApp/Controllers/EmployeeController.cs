@@ -69,5 +69,43 @@ namespace EmployeeManagemetApp.Controllers
             model.Employees = _employeeRepository.GetAll();
             return View(model);
         }
+
+        public IActionResult DepartmentEmployee()
+        {
+            var model = new DepartmentEmployeeViewModel();
+            model.Departments = _departmentRepository
+                .GetAll()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                }).ToList();
+
+            return View(model);
+        }
+
+
+        //[Produces("application/json")]
+        public IActionResult GetEmployeeBy(int departmentId)
+        {
+            var employees = _employeeRepository.GetByDepartmentId(departmentId);
+
+            return Json(employees);
+        }
+
+
+        public IActionResult GetEmployee(int employeeId)
+        {
+            var employee = _employeeRepository.GetById(employeeId);
+            if (employee != null)
+            {
+                return PartialView("_EmployeeView", employee);
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
     }
 }
