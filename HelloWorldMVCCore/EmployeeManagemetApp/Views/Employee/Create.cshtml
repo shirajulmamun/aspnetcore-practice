@@ -23,59 +23,59 @@
                 <select asp-for="DepartmentId" asp-items="Model.Departments" class="form-control">
                     <option value="">--SELECT--</option>
                 </select>
-               
+
                 <span asp-validation-for="DepartmentId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control"/>
+                <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RegNo" class="control-label"></label>
-                <input asp-for="RegNo" class="form-control"/>
+                <input asp-for="RegNo" class="form-control" />
                 <span asp-validation-for="RegNo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Salary" class="control-label"></label>
-                <input asp-for="Salary" class="form-control"/>
+                <input asp-for="Salary" class="form-control" />
                 <span asp-validation-for="Salary" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MobileNumber" class="control-label"></label>
-                <input asp-for="MobileNumber" class="form-control"/>
+                <input asp-for="MobileNumber" class="form-control" />
                 <span asp-validation-for="MobileNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control"/>
+                <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default"/>
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
     <div class="col-md-6">
-        <table class="table table-striped table-hover table-bordered">
+        <table id="tbEmployee" class="table table-striped table-hover table-bordered">
             <thead>
-            <tr>
-                <th>Name</th>
-                <th>Reg No</th>
-                <th>Salary</th>
-                <th>Department Name</th>
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Reg No</th>
+                    <th>Salary</th>
+                    <th>Department Name</th>
+                </tr>
             </thead>
             <tbody>
-              @foreach (var employee in Model.Employees)
-              {
-                  <tr>
-                      <td>@employee.Name</td>
-                      <td>@employee.RegNo</td>
-                      <td>@employee.Salary</td>
-                      <td>@(employee.Department?.Name ?? "N/A")</td>
-                  </tr>
-              }
+                @foreach (var employee in Model.Employees)
+                {
+                    <tr>
+                        <td>@employee.Name</td>
+                        <td>@employee.RegNo</td>
+                        <td>@employee.Salary</td>
+                        <td>@(employee.Department?.Name ?? "N/A")</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
@@ -87,4 +87,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/datatables/js/dataTables.bootstrap.js"></script>
+    
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#tbEmployee').dataTable();
+
+    </script>
+
+}
+
+@section styles{ 
+    <link href="~/lib/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
 }

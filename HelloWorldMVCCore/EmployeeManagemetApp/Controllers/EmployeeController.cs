@@ -88,6 +88,13 @@ namespace EmployeeManagemetApp.Controllers
             return Json(employees);
         }
 
+        [Produces("application/json")]
+        public IActionResult GetAllEmployee()
+        {
+            var employees = _employeeRepository.GetAll();
+
+            return Json(employees);
+        }
 
         public IActionResult GetEmployee(int employeeId)
         {
@@ -141,6 +148,11 @@ namespace EmployeeManagemetApp.Controllers
                 .Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Name }).ToList();
 
             return PartialView("Employee/_EmployeeEdit", model);
+        }
+
+        public IActionResult Search()
+        {
+            return View();
         }
 
     }
