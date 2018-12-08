@@ -171,7 +171,8 @@ namespace EmployeeManagemetApp.Controllers
                 DepartmentId = employee.DepartmentId,
                 Email = employee.Email,
                 MobileNumber = employee.MobileNumber,
-                Salary = employee.Salary
+                Salary = employee.Salary,
+                RegNo = employee.RegNo
             };
             model.Departments = _departmentRepository.GetAll()
                 .Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Name }).ToList();

@@ -45,9 +45,53 @@
 </div>
 
 @section Scripts{ 
-
+<script src="~/lib/node_modules/node_modules/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
     <script>
         $("#DepartmentId").change(function() {
+            loadDepartmentWiseEmployees();
+
+        });
+
+        var employeeId;
+        $('#EmployeeId').change(function() {
+            employeeId = $('#EmployeeId').val();
+            var jsonData = { employeeId: employeeId };
+
+            $.ajax({
+                type: "POST",
+                url: "/Employee/GetEmployeeEditPartial",
+                data: jsonData,
+                success: function(response) {
+                    $('#loadBox').html(response);
+                    $('#myModal').modal('show');
+                }
+
+            });
+
+
+        });
+
+        function onSuccess(response) {
+
+           var jsonData = { employeeId: employeeId };
+
+            $.ajax({
+                type: "POST",
+                url: "/Employee/GetEmployee",
+                data: jsonData,
+                success: function(response) {
+                    $('#loadBox').html(response);
+                    loadDepartmentWiseEmployees();
+                }
+
+            });
+        }
+
+        function onFailer(response) {
+            alert("Error Occurred");
+        }
+
+        function loadDepartmentWiseEmployees() {
             var departmentId = $("#DepartmentId").val();
             var json = { departmentId: departmentId };
 
@@ -75,25 +119,6 @@
                 }
 
             });
-
-        });
-
-        $('#EmployeeId').change(function() {
-            var employeeId = $('#EmployeeId').val();
-            var jsonData = { employeeId: employeeId };
-
-            $.ajax({
-                type: "POST",
-                url: "/Employee/GetEmployeeEditPartial",
-                data: jsonData,
-                success: function(response) {
-                    $('#loadBox').html(response);
-                    $('#myModal').modal('show');
-                }
-
-            });
-
-
-        });
+        }
     </script>
 }
