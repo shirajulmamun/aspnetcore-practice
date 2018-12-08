@@ -22,6 +22,8 @@
         </div>
     </div>
     
+  
+    
     <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -45,7 +47,7 @@
 </div>
 
 @section Scripts{ 
-
+    <script src="~/lib/node_modules/node_modules/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
     <script>
         $("#DepartmentId").change(function() {
             var departmentId = $("#DepartmentId").val();
@@ -77,9 +79,9 @@
             });
 
         });
-
+        var employeeId;
         $('#EmployeeId').change(function() {
-            var employeeId = $('#EmployeeId').val();
+            employeeId = $('#EmployeeId').val();
             var jsonData = { employeeId: employeeId };
 
             $.ajax({
@@ -95,5 +97,23 @@
 
 
         });
+
+        function onSuccess(res) {
+            var jsonData = { employeeId: employeeId };
+            $.ajax({
+                type: "POST",
+                url: "/Employee/GetEmployee",
+                data: jsonData,
+                success: function(res) {
+                    $('#loadBox').html(res);
+                   // $('#myModal').modal('show');
+                }
+
+            });
+        }
+
+        function onFailure() {
+            $('#loadBox').html("Operation Failed");
+        }
     </script>
 }
