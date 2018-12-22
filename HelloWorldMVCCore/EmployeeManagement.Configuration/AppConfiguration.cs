@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
+using EmployeeManagement.Repositories.Contracts;
 using EmployeeManagement.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -25,10 +26,28 @@ namespace EmployeeManagement.Configuration
             });
 
             services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EmployeeDbContext")));
-            services.AddTransient<EmployeeRepository>();
+            services.AddTransient<IEmployeeRepository>(c =>
+            {
+                if (1 == 1)
+                {
+                    return new EmployeeRepository();
+                }
+                else
+                {
+                    return null;
+                }
+            });
             services.AddTransient<DepartmentRepository>();
+
+
+
             services.AddAutoMapper();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options => {
+                    options.SerializerSettings.ReferenceLoopHandling =
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                }); 
 
 
         }

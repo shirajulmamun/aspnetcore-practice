@@ -7,26 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Repositories.Repository
 {
-    public class DepartmentRepository
+    public class DepartmentRepository:Repository<Department>
     {
-        EmployeeDbContext db = new EmployeeDbContext();
-        public bool Add(Department department)
-        {
-            db.Departments.Add(department);
-            return db.SaveChanges() > 0;
-
-        }
-
-        public List<Department> GetAll()
-        {
-            return db.Departments.ToList();
-        }
-
-        public Department GetById(int id)
-        {
-            return db.Departments
-                .Include(c=>c.Employees)
-                .FirstOrDefault(c => c.Id == id);
-        }
+      
     }
 }

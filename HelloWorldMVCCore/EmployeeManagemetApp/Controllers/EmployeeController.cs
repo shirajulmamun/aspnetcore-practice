@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EmployeeManagement.Models.EntityModels;
+using EmployeeManagement.Repositories.Contracts;
 using EmployeeManagement.Repositories.Repository;
 using EmployeeManagemetApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,11 @@ namespace EmployeeManagemetApp.Controllers
 {
     public class EmployeeController:Controller
     {
-        private EmployeeRepository _employeeRepository;
+        private IEmployeeRepository _employeeRepository;
         private DepartmentRepository _departmentRepository;
         private IMapper _mapper;
 
-        public EmployeeController(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository,IMapper mapper)
+        public EmployeeController(IEmployeeRepository employeeRepository, DepartmentRepository departmentRepository,IMapper mapper)
         {
             this._employeeRepository = employeeRepository;
             this._departmentRepository = departmentRepository;
@@ -153,6 +154,29 @@ namespace EmployeeManagemetApp.Controllers
         public IActionResult Search()
         {
             return View();
+        }
+
+        public IActionResult EmployeeSearch(DataTableSearchCriteria model,string name, string regNo)
+        {
+            var searchCriteria = model.SearchCriteria;
+            var employeeList = _employeeRepository.GetAll().AsEnumerable();
+            if (!string.IsNullOrEmpty(searchCriteria.Name))
+            {
+                employeeList = employeeList
+                    .Where(c => 
+                    c.Name.ToLower()
+                    .Contains(searchCriteria.Name.ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(searchCriteria.RegNo))
+            {
+                employeeList = employeeList
+                    .Where(c =>
+                        c.RegNo.ToLower()
+                            .Contains(searchCriteria.RegNo.ToLower()));
+            }
+
+            return Json(employeeList.ToList());
         }
 
     }
