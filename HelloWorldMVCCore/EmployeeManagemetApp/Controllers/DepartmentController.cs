@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.Models.EntityModels;
+using EmployeeManagement.Repositories.Contracts;
 using EmployeeManagement.Repositories.Repository;
 using EmployeeManagemetApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace EmployeeManagemetApp.Controllers
 {
     public class DepartmentController : Controller
     {
-        private DepartmentRepository _departmentRepository;
+        private IDepartmentRepository _departmentRepository;
 
-        public DepartmentController(DepartmentRepository departmentRepository)
+        public DepartmentController(IDepartmentRepository departmentRepository)
         {
             _departmentRepository = departmentRepository;
         }

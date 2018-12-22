@@ -6,15 +6,8 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 
 namespace EmployeeManagement.Repositories.Contracts
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository:IRepository<Employee>
     {
-        bool Add(Employee entity);
-        bool Update(Employee entity);
-        bool Remove(Employee entity);
-
-        Employee GetById(int id);
-        ICollection<Employee> GetAll();
-
         IEnumerable<Employee> Search(Employee employeeSearchCriteria);
 
         List<Employee> GetByDepartmentId(int departmentId);

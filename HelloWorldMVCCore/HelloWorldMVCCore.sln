@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.EFExampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Repositories", "EmployeeManagement.Repositories\EmployeeManagement.Repositories.csproj", "{BF9441B9-B778-42BE-B0C9-06A1DDCA6929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.DatabaseContexts", "EmployeeManagement.DatabaseContexts\EmployeeManagement.DatabaseContexts.csproj", "{4641562D-8EBE-4CB0-9CFC-B61B8B0B8296}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.DatabaseContexts", "EmployeeManagement.DatabaseContexts\EmployeeManagement.DatabaseContexts.csproj", "{4641562D-8EBE-4CB0-9CFC-B61B8B0B8296}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.Configuration", "EmployeeManagement.Configuration\EmployeeManagement.Configuration.csproj", "{E85B70F3-B1ED-4EDC-87AE-D155EB594C30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Configuration", "EmployeeManagement.Configuration\EmployeeManagement.Configuration.csproj", "{E85B70F3-B1ED-4EDC-87AE-D155EB594C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.BLL", "EmployeeManagement.BLL\EmployeeManagement.BLL.csproj", "{5504F179-7232-4B77-A002-8A58FDF71CD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{E85B70F3-B1ED-4EDC-87AE-D155EB594C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E85B70F3-B1ED-4EDC-87AE-D155EB594C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E85B70F3-B1ED-4EDC-87AE-D155EB594C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5504F179-7232-4B77-A002-8A58FDF71CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5504F179-7232-4B77-A002-8A58FDF71CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5504F179-7232-4B77-A002-8A58FDF71CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5504F179-7232-4B77-A002-8A58FDF71CD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

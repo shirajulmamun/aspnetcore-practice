@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using EmployeeManagement.BLL.Contracts;
+using EmployeeManagement.BLL.Managers;
 
 namespace EmployeeManagement.Configuration
 {
@@ -38,6 +40,9 @@ namespace EmployeeManagement.Configuration
                 }
             });
             services.AddTransient<DepartmentRepository>();
+            services.AddTransient<IContractRepository, ContractRepository>();
+            services.AddTransient<IContractManager,ContractManager>();
+            services.AddTransient<IEmployeeManager,EmployeeManager>();
 
 
 

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using EmployeeManagement.Models.EntityModels;
+using EmployeeManagement.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Repositories.Repository
 {
-    public abstract class Repository<T> where T:class
+    public abstract class Repository<T>:IRepository<T> where T:class
     {
-        EmployeeDbContext db = new EmployeeDbContext();
+       protected EmployeeDbContext db = new EmployeeDbContext();
 
 
         public DbSet<T> Table
