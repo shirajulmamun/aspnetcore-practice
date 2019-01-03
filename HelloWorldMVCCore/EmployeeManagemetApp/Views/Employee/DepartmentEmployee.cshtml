@@ -96,8 +96,8 @@
             var json = { departmentId: departmentId };
 
             $.ajax({
-                type: "POST",
-                url: "/Employee/GetEmployeeBy",
+                type: "GET",
+                url: "/api/Employees/GetByDepartment",
                 data: json,
                 success: function(response) {
                     var employees = response;

@@ -7,5 +7,6 @@ namespace EmployeeManagement.BLL.Contracts
 {
      public interface IEmployeeManager:IManager<Employee>
     {
+        List<Employee> GetByDepartment(int departmentId);
     }
 }
