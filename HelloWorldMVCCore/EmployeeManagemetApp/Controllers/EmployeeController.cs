@@ -7,6 +7,7 @@ using EmployeeManagement.Models.EntityModels;
 using EmployeeManagement.Repositories.Contracts;
 using EmployeeManagement.Repositories.Repository;
 using EmployeeManagemetApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace EmployeeManagemetApp.Controllers
             this._departmentRepository = departmentRepository;
             this._mapper = mapper;
         }
+
+        [Authorize]
         public IActionResult Create()
         {
             var model = new EmployeeCreateViewModel();
