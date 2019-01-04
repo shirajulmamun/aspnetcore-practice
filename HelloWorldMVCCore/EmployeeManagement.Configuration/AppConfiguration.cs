@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using EmployeeManagement.BLL.Contracts;
 using EmployeeManagement.BLL.Managers;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace EmployeeManagement.Configuration
@@ -54,7 +55,16 @@ namespace EmployeeManagement.Configuration
                 .AddEntityFrameworkStores<EmployeeDbContext>()
                 .AddDefaultTokenProviders();
 
-
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 0;
+            });
             services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = "/Account/AccessDenied";
@@ -68,12 +78,15 @@ namespace EmployeeManagement.Configuration
                 options.SlidingExpiration = true;
             });
 
+           
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(options => {
                     options.SerializerSettings.ReferenceLoopHandling =
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+
                 }); 
 
 
