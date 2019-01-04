@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace EmployeeManagement.Models.EntityModels
 {
-    public partial class EmployeeDbContext : DbContext
+    public partial class EmployeeDbContext : IdentityDbContext<AppUser>
     {
         public EmployeeDbContext()
         {
@@ -33,6 +34,7 @@ namespace EmployeeManagement.Models.EntityModels
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.Property(e => e.Name).IsRequired();
