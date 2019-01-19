@@ -48,6 +48,12 @@ namespace EmployeeManagemetApp
 
             app.UseAuthentication();
 
+            app.UseCors(config =>
+            {
+                config.AllowAnyOrigin();
+                config.AllowAnyHeader();
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

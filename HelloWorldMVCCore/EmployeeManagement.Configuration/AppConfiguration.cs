@@ -46,7 +46,8 @@ namespace EmployeeManagement.Configuration
             services.AddTransient<IContractRepository, ContractRepository>();
             services.AddTransient<IContractManager,ContractManager>();
             services.AddTransient<IEmployeeManager,EmployeeManager>();
-
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductManager, ProductManager>();
 
 
             services.AddAutoMapper();
@@ -78,7 +79,7 @@ namespace EmployeeManagement.Configuration
                 options.SlidingExpiration = true;
             });
 
-           
+            services.AddCors();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)

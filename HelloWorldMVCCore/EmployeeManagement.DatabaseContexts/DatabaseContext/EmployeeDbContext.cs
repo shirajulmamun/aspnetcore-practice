@@ -20,6 +20,7 @@ namespace EmployeeManagement.Models.EntityModels
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<Contract> Contracts { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
